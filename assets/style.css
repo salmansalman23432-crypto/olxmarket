@@ -1,0 +1,24 @@
+/* تنسيقات عامة للمشروع */
+* { box-sizing: border-box;margin: 0;padding: 0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { direction: rtl; /* اتجاه عربي */background-color: #f4f4f9;color: #333; }
+
+header { background-color: #2c3e50;color: white;padding: 1rem 2rem;display: flex;justify-content: space-between;align-items: center; }
+
+.container { width: 90%;margin: 20px auto; }
+
+/* بطاقة الإعلان (خاصة الخدمات) */
+.ad-card { background: white;border-radius: 8px;box-shadow: 0 2px 5px rgba(0,0,0,0.1);margin-bottom: 20px;padding: 15px;display: flex;gap: 20px; }
+.ad-card img { width: 150px;height: 150px;object-fit: cover;border-radius: 4px; }
+.ad-info h3 { color: #e67e22; }
+
+/* تمييز الخدمات بلون خاص */
+button { background-color: #27ae60;color: white;border: none;padding: 10px 20px;cursor: pointer;border-radius: 5px; }
+
+
+.service-highlight { border: 2px solid #27ae60; background-color: #f0fff4; }
+.service-tag { position: absolute; top: 10px; right: 10px; background: #27ae60; color: white; padding: 2px 8px; font-size: 12px; border-radius: 3px; }
+.ad-image-container { position: relative; }
+.price-badge { background: #e67e22; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+.ad-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.view-btn { text-decoration: none; color: #2980b9; font-weight: bold; }
