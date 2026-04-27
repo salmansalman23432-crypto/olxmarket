@@ -37,7 +37,14 @@ $result = mysqli_query($conn, $query);
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <div class="ad-card">
                     <div class="image-wrapper">
-                        <img src="<?php echo base_url('assets/images/cats/' . $row['cat_name'] . '.jpg'); ?>" class="category-bg">
+                        <?php 
+                        // منطق اختيار الصورة: إذا وجدت صورة مرفوعة يتم عرضها، وإلا يتم عرض صورة القسم
+                        $image_path = 'assets/images/cats/' . $row['cat_name'] . '.jpg'; // الافتراضي
+                        if (!empty($row['image']) && file_exists('uploads/' . $row['image'])) {
+                            $image_path = 'uploads/' . $row['image'];
+                        }
+                        ?>
+                        <img src="<?php echo base_url($image_path); ?>" class="category-bg" alt="<?php echo htmlspecialchars($row['title']); ?>">
                         <div class="user-avatar-overlay"><img src="<?php echo base_url('uploads/default.jpg'); ?>"></div>
                     </div>
                     <div class="ad-content">
