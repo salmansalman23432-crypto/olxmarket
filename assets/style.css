@@ -33,6 +33,38 @@ main { flex: 1; padding-bottom: 40px; } /* يضمن دفع الفوتر للأس
 .ad-card:hover { transform: translateY(-5px); }
 .image-wrapper { position: relative; height: 180px; }
 .category-bg { width: 100%; height: 100%; object-fit: cover; }
+
+/* شارة القسم المضافة */
+/*.category-badge {
+/*
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--success);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 5;
+}*/
+
+/* شارة القسم المحسنة - تأكد من نسخ هذا الجزء */
+.category-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px; /* للجهة اليسرى */
+    background-color: #27ae60 !important; /* اللون الأخضر صراحة */
+    color: #ffffff !important; /* اللون الأبيض صراحة */
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 99; /* لضمان ظهورها فوق الصورة */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+
 .user-avatar-overlay { position: absolute; bottom: -25px; right: 15px; width: 60px; height: 60px; border: 3px solid white; border-radius: 50%; overflow: hidden; background: white; }
 .user-avatar-overlay img { width: 100%; height: 100%; object-fit: cover; }
 .ad-content { padding: 35px 15px 15px; }

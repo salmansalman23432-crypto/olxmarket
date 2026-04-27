@@ -36,10 +36,10 @@ $result = mysqli_query($conn, $query);
         <?php if(mysqli_num_rows($result) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <div class="ad-card">
-                    <div class="image-wrapper">
+                    <div class="image-wrapper" style="position: relative;"> <div class="category-badge"><?php echo $row['cat_name']; ?></div>
+
                         <?php 
-                        // منطق اختيار الصورة: إذا وجدت صورة مرفوعة يتم عرضها، وإلا يتم عرض صورة القسم
-                        $image_path = 'assets/images/cats/' . $row['cat_name'] . '.jpg'; // الافتراضي
+                        $image_path = 'assets/images/cats/' . $row['cat_name'] . '.jpg'; 
                         if (!empty($row['image']) && file_exists('uploads/' . $row['image'])) {
                             $image_path = 'uploads/' . $row['image'];
                         }
