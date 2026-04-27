@@ -1,21 +1,10 @@
 <?php
-// إعدادات قاعدة البيانات
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "olx_market_db";
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
-// إنشاء الاتصال
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-
-// التحقق من الاتصال
-if (!$conn) {
-    die("فشل الاتصال: " . mysqli_connect_error());
+if (!defined('BASE_URL')) {
+    define('BASE_URL', 'http://localhost/olxmarket/');
 }
 
-// ضبط الترميز لدعم اللغة العربية بشكل كامل
+$conn = mysqli_connect("localhost", "root", "", "olx_market_db");
+if (!$conn) { die("خطأ في الاتصال: " . mysqli_connect_error()); }
 mysqli_set_charset($conn, "utf8mb4");
-
-// مسار ثابت للمشروع ليسهل علينا استدعاء الملفات
-define('BASE_URL', 'http://localhost/your_project_name/'); 
-?>
