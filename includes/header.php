@@ -21,14 +21,16 @@ include_once(dirname(__DIR__) . '/includes/functions.php');
             </div>
         </a>
         <nav class="nav-menu">
+			<a href="<?php echo base_url('help.php'); ?>" style="color: white; text-decoration: none; font-size: 0.9rem; margin-left: 15px; border-left: 1px solid rgba(255,255,255,0.3); padding-left: 15px;">المساعدة</a>
+
 			<?php if(isset($_SESSION['user_id'])): ?>
-				<span style="font-size: 0.9rem;">مرحباً، <a href="<?php echo base_url('profile.php'); ?>" style="color: #e67e22; text-decoration: none; font-weight: bold;"><?php echo $_SESSION['full_name']; ?></a></span>
+				<span style="font-size: 0.9rem;">مرحباً، <a href="<?php echo base_url('profile.php'); ?>" style="color: var(--accent); text-decoration: none; font-weight: bold;"><?php echo $_SESSION['full_name']; ?></a></span>
 				<a href="<?php echo base_url('post_ad.php'); ?>"><button class="btn-post">أضف إعلان</button></a>
 				<a href="<?php echo base_url('actions/logout.php'); ?>" style="color: white; text-decoration: none; font-size: 0.9rem; margin-right: 10px;">خروج</a>
 			<?php else: ?>
 				<a href="<?php echo base_url('login.php'); ?>" class="btn-login">دخول / تسجيل</a>
 			<?php endif; ?>
-        </nav>
+		</nav>
     </div>
 </header>
 <main>
