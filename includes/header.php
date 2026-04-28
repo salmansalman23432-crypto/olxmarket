@@ -21,15 +21,21 @@ include_once(dirname(__DIR__) . '/includes/functions.php');
             </div>
         </a>
         <nav class="nav-menu">
-            <a href="<?php echo base_url('help.php'); ?>" style="color: white; text-decoration: none; font-size: 0.9rem; margin-left: 10px;">المساعدة</a>
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo base_url('profile.php'); ?>" style="color: var(--accent); text-decoration: none; font-weight: bold;">بروفايلي</a>
-                <a href="<?php echo base_url('post_ad.php'); ?>"><button class="btn-post">أضف إعلان</button></a>
-                <a href="<?php echo base_url('actions/logout.php'); ?>" style="color: white; text-decoration: none; font-size: 0.8rem;">خروج</a>
-            <?php else: ?>
-                <a href="<?php echo base_url('login.php'); ?>" class="btn-login">دخول / تسجيل</a>
-            <?php endif; ?>
-        </nav>
+			<a href="<?php echo base_url('help.php'); ?>" style="color: white; text-decoration: none; font-size: 0.9rem; margin-left: 10px;">المساعدة</a>
+			
+			<?php if(isset($_SESSION['user_id'])): ?>
+				<span style="font-size: 0.85rem; color: #ddd; margin-left: 5px;">مرحباً، 
+					<a href="<?php echo base_url('profile.php'); ?>" style="color: var(--accent); text-decoration: none; font-weight: bold;">
+						<?php echo explode(' ', $_SESSION['full_name'])[0]; // جلب الاسم الأول فقط لجمالية التصميم ?>
+					</a>
+				</span>
+				
+				<a href="<?php echo base_url('post_ad.php'); ?>"><button class="btn-post">أضف إعلان</button></a>
+				<a href="<?php echo base_url('actions/logout.php'); ?>" style="color: white; text-decoration: none; font-size: 0.8rem; margin-right: 5px;">خروج</a>
+			<?php else: ?>
+				<a href="<?php echo base_url('login.php'); ?>" class="btn-login">دخول / تسجيل</a>
+			<?php endif; ?>
+		</nav>
     </div>
 </header>
 
