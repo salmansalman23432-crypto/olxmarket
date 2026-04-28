@@ -3,7 +3,6 @@ include('config/db.php');
 include('includes/functions.php'); 
 include('includes/header.php'); 
 
-// التأكد من أن المستخدم مسجل دخول
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -29,9 +28,9 @@ $user = mysqli_fetch_assoc($result);
                 <input type="text" name="full_name" value="<?php echo $user['full_name']; ?>" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
             
-            <div style="margin-bottom: 15px;">
-                <label>البريد الإلكتروني:</label>
-                <input type="email" name="email" value="<?php echo $user['email']; ?>" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <div style="margin-bottom: 15px; opacity: 0.7;">
+                <label>البريد الإلكتروني (لا يمكن تغييره):</label>
+                <input type="email" value="<?php echo $user['email']; ?>" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #f0f0f0; cursor: not-allowed;">
             </div>
 
             <div style="margin-bottom: 15px;">

@@ -47,7 +47,6 @@ main { flex: 1; padding-bottom: 40px; }
 .view-btn { background: var(--primary); color: white; text-decoration: none; padding: 7px 15px; border-radius: 5px; font-size: 0.9rem; }
 
 /* Help & FAQ */
-.help-hero { background: white; padding: 30px; border-radius: 15px; margin-top: 20px; border-right: 5px solid var(--accent); }
 .faq-item { background: white; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 .faq-question { padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
 .faq-answer { padding: 0 15px; max-height: 0; overflow: hidden; transition: 0.3s; background: #fafafa; }

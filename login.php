@@ -2,30 +2,70 @@
 include('config/db.php'); 
 include('includes/functions.php'); 
 include('includes/header.php'); 
+
+$redirect_url = isset($_GET['redirect_to']) ? $_GET['redirect_to'] : 'index.php';
 ?>
 
-<div class="container" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; padding: 40px 0;">
-    
-    <div style="flex: 1; min-width: 300px; max-width: 450px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <h2 style="text-align: center; margin-bottom: 25px; color: #2c3e50;">تسجيل الدخول</h2>
-        <form action="actions/auth_action.php" method="POST">
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <input type="password" name="password" placeholder="كلمة المرور" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <button type="submit" name="login" style="width: 100%; padding: 12px; background: #2c3e50; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">دخول</button>
-        </form>
-    </div>
+<div class="container" style="padding: 50px 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+        
+        <div>
+            <h2 style="margin-bottom: 25px; color: var(--primary);">تسجيل الدخول</h2>
+            
+            <?php if(isset($_GET['error']) && $_GET['error'] == 'wrong_credentials'): ?>
+                <div style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb; font-size: 0.9rem;">
+                    ❌ البريد الإلكتروني أو كلمة المرور غير صحيحة.
+                </div>
+            <?php endif; ?>
 
-    <div style="flex: 1; min-width: 300px; max-width: 450px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <h2 style="text-align: center; margin-bottom: 25px; color: #e67e22;">إنشاء حساب جديد</h2>
-        <form action="actions/auth_action.php" method="POST">
-            <input type="text" name="full_name" placeholder="الاسم بالكامل" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <input type="password" name="password" placeholder="كلمة المرور" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <input type="text" name="phone" placeholder="رقم الهاتف" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
-            <button type="submit" name="register" style="width: 100%; padding: 12px; background: #e67e22; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">تسجيل الحساب</button>
-        </form>
-    </div>
+            <form action="actions/auth_action.php" method="POST">
+                <input type="hidden" name="redirect_to" value="<?php echo htmlspecialchars($redirect_url); ?>">
+                
+                <div style="margin-bottom: 15px;">
+                    <label>البريد الإلكتروني:</label>
+                    <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label>كلمة المرور:</label>
+                    <input type="password" name="password" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <button type="submit" name="login" class="btn-login" style="width: 100%; border: none; padding: 15px; cursor: pointer;">دخول</button>
+            </form>
+        </div>
 
+        <div style="border-right: 1px solid #eee; padding-right: 50px;">
+            <h2 style="margin-bottom: 25px; color: var(--success);">إنشاء حساب جديد</h2>
+
+            <?php if(isset($_GET['error']) && $_GET['error'] == 'email_exists'): ?>
+                <div style="background: #fff3cd; color: #856404; padding: 12px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #ffeeba; font-size: 0.9rem;">
+                    ⚠️ هذا البريد الإلكتروني مسجل مسبقاً! جرب الدخول.
+                </div>
+            <?php endif; ?>
+
+            <form action="actions/auth_action.php" method="POST">
+                <input type="hidden" name="redirect_to" value="<?php echo htmlspecialchars($redirect_url); ?>">
+                
+                <div style="margin-bottom: 15px;">
+                    <label>الاسم بالكامل:</label>
+                    <input type="text" name="full_name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>البريد الإلكتروني:</label>
+                    <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>رقم الهاتف:</label>
+                    <input type="text" name="phone" placeholder="09XXXXXXXX" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label>كلمة المرور:</label>
+                    <input type="password" name="password" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px;">
+                </div>
+                <button type="submit" name="register" class="btn-post" style="width: 100%; padding: 15px; cursor: pointer;">إنشاء حساب</button>
+            </form>
+        </div>
+
+    </div>
 </div>
 
 <?php include('includes/footer.php'); ?>
