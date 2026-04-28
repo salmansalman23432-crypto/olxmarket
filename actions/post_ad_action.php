@@ -23,17 +23,16 @@ if (isset($_POST['submit_ad']) && isset($_SESSION['user_id'])) {
         }
     }
 
-    // إدخال البيانات في قاعدة البيانات
+    // تعديل القيمة من active إلى pending ليدخل الإعلان للمراجعة أولاً
     $sql = "INSERT INTO ads (user_id, category_id, title, description, price, image, status) 
-            VALUES ('$user_id', '$category_id', '$title', '$description', '$price', '$image_name', 'active')";
+            VALUES ('$user_id', '$category_id', '$title', '$description', '$price', '$image_name', 'pending')";
 
     if (mysqli_query($conn, $sql)) {
-        // العودة للرئيسية مع رسالة نجاح
-        header("Location: ../index.php?status=success");
+        // العودة للرئيسية مع رسالة نجاح تخبر المستخدم أن الإعلان تحت المراجعة
+        header("Location: ../index.php?status=pending_review");
     } else {
         echo "خطأ في القاعدة: " . mysqli_error($conn);
     }
 } else {
-    // محاولة دخول غير شرعي للملف
     header("Location: ../index.php");
 }
